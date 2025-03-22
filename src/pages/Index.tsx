@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Camera, Settings, Info } from 'lucide-react';
 import { AppProvider, useAppContext } from '@/context/AppContext';
@@ -54,21 +53,42 @@ const HomeContent: React.FC = () => {
     return translations[key][language as keyof typeof translations[keyof typeof translations]] || translations[key].english;
   };
   
-  // Special style for wearable mode
-  const wearableStyle = mode === 'wearable' ? 'min-h-screen bg-black flex flex-col items-center justify-center p-2' : '';
-  
   if (mode === 'wearable' && status === 'idle') {
-    // Simplified UI for wearable mode
     return (
-      <div className={`min-h-screen bg-black flex flex-col items-center justify-center p-4`}>
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 animate-fade-in">
+        <div className="glass-card bg-black/40 border-white/20 p-6 rounded-full mb-4 animate-pulse-subtle">
+          <span className="text-white text-2xl font-bold">CurrencySight</span>
+        </div>
+        
         <button
           onClick={startCamera}
-          className="wearable-button animate-pulse-subtle"
+          className="wearable-button group relative overflow-hidden animate-scale-in"
           aria-label={getText('scanCurrency')}
         >
-          <Camera className="h-10 w-10 mb-2" />
-          <span>{getText('scanCurrency')}</span>
+          <span className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></span>
+          <div className="flex flex-col items-center">
+            <Camera className="h-10 w-10 mb-2" />
+            <span className="text-gradient">{getText('scanCurrency')}</span>
+          </div>
         </button>
+        
+        <div className="mt-8 flex gap-4">
+          <button
+            onClick={() => {/* Toggle settings */}}
+            className="p-4 rounded-full bg-black/40 border border-white/20 text-white hover:bg-white/10 transition-colors duration-200 focus-visible-ring"
+            aria-label={getText('settings')}
+          >
+            <Settings className="h-6 w-6" />
+          </button>
+          
+          <button
+            onClick={() => {/* Show info */}}
+            className="p-4 rounded-full bg-black/40 border border-white/20 text-white hover:bg-white/10 transition-colors duration-200 focus-visible-ring"
+            aria-label={getText('about')}
+          >
+            <Info className="h-6 w-6" />
+          </button>
+        </div>
       </div>
     );
   }
@@ -117,7 +137,6 @@ const HomeContent: React.FC = () => {
     );
   }
   
-  // Default Home Screen
   return (
     <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
       <Header />
