@@ -9,7 +9,7 @@ import ErrorDisplay from '@/components/ErrorDisplay';
 import SettingsPanel from '@/components/SettingsPanel';
 
 const HomeContent: React.FC = () => {
-  const { language, status, mode, startCamera } = useAppContext();
+  const { language, status, mode, startCamera, goToHome } = useAppContext();
   
   const translations = {
     welcomeTitle: {
@@ -23,7 +23,7 @@ const HomeContent: React.FC = () => {
       english: "Scan any Indian banknote to identify its denomination",
       hindi: "किसी भी भारतीय नोट को स्कैन करके उसका मूल्य पहचानें",
       tamil: "எந்த இந்திய நோட்டையும் ஸ்கேன் செய்து அதன் மதிப்பை அடையாளம் காணுங்கள்",
-      telugu: "ఏదైనా భారతీయ బ్యాంకు నోటును స్కాన్ చేసి దాని విలువను గుర్తించండి",
+      telugu: "ఏదైనా భారతీయ బ్యాంకు నోటును స్కాన్ చేయండి",
       bengali: "যেকোন ভারতীয় ব্যাংক নোট স্ক্যান করে এর মূল্যমান চিহ্নিত করুন"
     },
     scanCurrency: {
@@ -56,7 +56,14 @@ const HomeContent: React.FC = () => {
   if (mode === 'wearable' && status === 'idle') {
     return (
       <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 animate-fade-in">
-        <div className="glass-card bg-black/40 border-white/20 p-6 rounded-full mb-4 animate-pulse-subtle">
+        <div 
+          className="glass-card bg-black/40 border-white/20 p-6 rounded-full mb-4 animate-pulse-subtle cursor-pointer hover:bg-black/50 transition-colors"
+          onClick={() => {
+            goToHome();
+          }}
+          role="button"
+          aria-label="Go to home page"
+        >
           <span className="text-white text-2xl font-bold">CurrencySight</span>
         </div>
         
