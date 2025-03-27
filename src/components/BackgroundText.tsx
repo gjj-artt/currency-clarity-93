@@ -15,16 +15,19 @@ const BackgroundText: React.FC = () => {
   const [symbols, setSymbols] = useState<CurrencySymbol[]>([]);
 
   useEffect(() => {
+    // More vibrant colors for currency symbols
     const colors = [
       'text-blue-500', 'text-green-500', 'text-purple-500', 
       'text-pink-500', 'text-yellow-500', 'text-teal-500',
-      'text-indigo-500', 'text-orange-500', 'text-red-400'
+      'text-indigo-500', 'text-orange-500', 'text-red-400',
+      'text-emerald-500', 'text-fuchsia-500', 'text-rose-500',
+      'text-amber-500', 'text-lime-500', 'text-cyan-500'
     ];
     
-    const currencySymbols = ['$', '€', '¥', '£', '₹', '₽', '₩', '₺', '₦', '₫'];
+    const currencySymbols = ['$', '€', '¥', '£', '₹', '₽', '₩', '₺', '₦', '₫', '฿', '₴', '₱', '₲', '₸'];
     
-    // Create 15 randomly positioned currency symbols
-    const initialSymbols = Array.from({ length: 15 }, () => ({
+    // Create more currency symbols (increased from 15 to 25)
+    const initialSymbols = Array.from({ length: 25 }, () => ({
       symbol: currencySymbols[Math.floor(Math.random() * currencySymbols.length)],
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -73,7 +76,7 @@ const BackgroundText: React.FC = () => {
               fontSize: `${symbol.size}rem`,
               animationDelay: `${index * 0.2}s`,
               animationDuration: `${2 + symbol.speed}s`,
-              opacity: 0.7,
+              opacity: 0.8, // Increased opacity from 0.7 to 0.8
             }}
           >
             {symbol.symbol}
@@ -81,8 +84,12 @@ const BackgroundText: React.FC = () => {
         ))}
       </div>
       
-      {/* Colorful gradient background overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+      {/* More vibrant gradient background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10"></div>
+      
+      {/* Additional colorful gradient accents */}
+      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-teal-500/5 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-500/5 to-transparent"></div>
       
       {/* Subtle grid pattern overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>

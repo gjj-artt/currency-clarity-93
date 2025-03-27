@@ -68,7 +68,7 @@
   animation: bounce-subtle 3s ease-in-out infinite;
 }
 
-/* Add gradient accents to elements */
+/* Enhanced gradient accents for elements */
 .accent-gradient {
   background: linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
 }
@@ -92,4 +92,26 @@
 
 .chatbot-pulse {
   animation: pulse-ring 2s infinite;
+}
+
+/* New colorful background elements */
+.bg-accent-dots {
+  background-image: radial-gradient(rgba(147, 51, 234, 0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
