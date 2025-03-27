@@ -117,7 +117,7 @@ const HomeContent: React.FC = () => {
           role="button"
           aria-label="Go to home page"
         >
-          <span className="text-white text-2xl font-bold">CurrencySight</span>
+          <span className="text-white text-2xl font-bold">CurrencySence</span>
         </div>
         
         <button
@@ -237,8 +237,8 @@ const HomeContent: React.FC = () => {
             {getText('welcomeTitle')}
           </h1>
           
-          <p className="text-lg text-center mb-10 text-muted-foreground">
-            {getText('welcomeMessage')}
+          <p className="text-lg text-center mb-6 text-muted-foreground italic">
+            Empowering Financial Independence for the Visually Impaired
           </p>
           
           <div className="flex flex-col gap-4">

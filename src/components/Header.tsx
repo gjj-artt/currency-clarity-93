@@ -17,7 +17,7 @@ const Header: React.FC = () => {
           className="focus-visible-ring text-xl md:text-2xl font-bold"
           aria-label="Go to home"
         >
-          CurrencySight
+          CurrencySence
         </button>
       </div>
       
