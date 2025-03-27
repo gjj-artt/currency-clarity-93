@@ -7,8 +7,8 @@ type CurrencySymbol = {
   y: number;
   size: number;
   color: string;
-  speed: number;
-  direction: number;
+  speedX: number;
+  speedY: number;
 };
 
 const BackgroundText: React.FC = () => {
@@ -26,29 +26,48 @@ const BackgroundText: React.FC = () => {
     
     const currencySymbols = ['$', '€', '¥', '£', '₹', '₽', '₩', '₺', '₦', '₫', '฿', '₴', '₱', '₲', '₸'];
     
-    // Create more currency symbols (increased from 15 to 25)
+    // Create more currency symbols
     const initialSymbols = Array.from({ length: 25 }, () => ({
       symbol: currencySymbols[Math.floor(Math.random() * currencySymbols.length)],
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 3 + 2, // Between 2-5rem
       color: colors[Math.floor(Math.random() * colors.length)],
-      speed: Math.random() * 0.5 + 0.2, // Random speed
-      direction: Math.random() > 0.5 ? 1 : -1, // Random direction
+      speedX: (Math.random() - 0.5) * 0.4, // Random horizontal speed
+      speedY: (Math.random() - 0.5) * 0.4, // Random vertical speed
     }));
     
     setSymbols(initialSymbols);
     
-    // Animate the currency symbols
+    // Animate the currency symbols to jump around
     const interval = setInterval(() => {
       setSymbols(prevSymbols => 
-        prevSymbols.map(symbol => ({
-          ...symbol,
-          // Move the symbol up or down based on direction
-          y: symbol.y + symbol.speed * symbol.direction,
-          // If the symbol goes out of bounds, reverse direction or reset position
-          direction: symbol.y <= 0 || symbol.y >= 100 ? -symbol.direction : symbol.direction,
-        }))
+        prevSymbols.map(symbol => {
+          // Calculate new position
+          let newX = symbol.x + symbol.speedX;
+          let newY = symbol.y + symbol.speedY;
+          let newSpeedX = symbol.speedX;
+          let newSpeedY = symbol.speedY;
+          
+          // Bounce off edges
+          if (newX <= 0 || newX >= 100) {
+            newSpeedX = -newSpeedX;
+            newX = Math.max(0, Math.min(100, newX));
+          }
+          
+          if (newY <= 0 || newY >= 100) {
+            newSpeedY = -newSpeedY;
+            newY = Math.max(0, Math.min(100, newY));
+          }
+          
+          return {
+            ...symbol,
+            x: newX,
+            y: newY,
+            speedX: newSpeedX,
+            speedY: newSpeedY,
+          };
+        })
       );
     }, 50);
     
@@ -64,19 +83,19 @@ const BackgroundText: React.FC = () => {
         CurrencySence
       </h1>
       
-      {/* Decorative currency symbols - animated */}
+      {/* Decorative currency symbols - continuously jumping */}
       <div className="absolute inset-0">
         {symbols.map((symbol, index) => (
           <div 
             key={index}
-            className={`absolute ${symbol.color} animate-bounce-subtle`}
+            className={`absolute ${symbol.color} transition-transform`}
             style={{
               left: `${symbol.x}%`,
               top: `${symbol.y}%`,
               fontSize: `${symbol.size}rem`,
-              animationDelay: `${index * 0.2}s`,
-              animationDuration: `${2 + symbol.speed}s`,
-              opacity: 0.8, // Increased opacity from 0.7 to 0.8
+              opacity: 0.8,
+              transform: `translate(-50%, -50%)`,
+              transition: 'transform 0.2s ease-out',
             }}
           >
             {symbol.symbol}
