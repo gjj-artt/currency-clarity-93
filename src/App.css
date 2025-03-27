@@ -9,8 +9,8 @@
 }
 
 .logo {
-  height: 5em; /* Reduced from 6em */
-  padding: 1em; /* Reduced from 1.5em */
+  height: 5.5em; /* Increased from 5em */
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -37,7 +37,7 @@
 }
 
 .card {
-  padding: 1.5em; /* Reduced from 2em */
+  padding: 1.5em;
 }
 
 .read-the-docs {

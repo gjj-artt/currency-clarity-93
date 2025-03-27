@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { useAppContext } from '@/context/AppContext';
 
 type CurrencySymbol = {
   symbol: string;
@@ -13,6 +14,20 @@ type CurrencySymbol = {
 
 const BackgroundText: React.FC = () => {
   const [symbols, setSymbols] = useState<CurrencySymbol[]>([]);
+  const { language } = useAppContext();
+
+  // Get translated background text based on selected language
+  const getBackgroundText = () => {
+    const translations = {
+      english: "CurrencySence",
+      hindi: "करेंसीसेंस",
+      tamil: "கரன்சிசென்ஸ்",
+      telugu: "కరెన్సీసెన్స్",
+      bengali: "কারেন্সিসেন্স"
+    };
+    
+    return translations[language as keyof typeof translations] || translations.english;
+  };
 
   useEffect(() => {
     // More vibrant colors for currency symbols
@@ -76,11 +91,11 @@ const BackgroundText: React.FC = () => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-      {/* Main logo background - reduced size */}
+      {/* Main logo background - sized appropriately */}
       <h1 className="text-[20vw] font-extrabold text-transparent bg-clip-text 
         bg-gradient-to-br from-gray-800/10 via-gray-800/5 to-gray-600/5 
         select-none opacity-10 tracking-wider">
-        CurrencySence
+        {getBackgroundText()}
       </h1>
       
       {/* Decorative currency symbols - continuously jumping */}

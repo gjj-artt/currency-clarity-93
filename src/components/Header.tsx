@@ -19,7 +19,7 @@ const Header: React.FC = () => {
           <img 
             src="/lovable-uploads/3221996f-11c6-43b9-84a3-21e5509b07a8.png" 
             alt="CurrencySence Logo" 
-            className="h-10 w-auto" // Reduced size
+            className="h-12 w-auto" // Increased from h-10 to h-12
           />
           <span className="text-lg md:text-xl font-bold hidden md:inline">CurrencySence</span>
         </button>
