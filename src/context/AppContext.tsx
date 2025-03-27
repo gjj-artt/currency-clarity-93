@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { speak, stopSpeaking } from '@/utils/speechUtils';
 import { triggerHapticFeedback } from '@/utils/hapticUtils';
@@ -6,7 +5,7 @@ import { checkOnlineStatus, saveToLocalStorage, getFromLocalStorage } from '@/ut
 
 type AppMode = 'mobile' | 'wearable';
 type AppLanguage = 'english' | 'hindi' | 'tamil' | 'telugu' | 'bengali';
-type AppStatus = 'idle' | 'camera' | 'processing' | 'result' | 'error';
+type AppStatus = 'idle' | 'camera' | 'processing' | 'result' | 'error' | 'settings' | 'accessibility';
 
 interface AppContextType {
   // Mode and language
@@ -161,7 +160,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       },
       offline_message: {
         english: "You are offline. Some features may be limited.",
-        hindi: "आप ऑफलाइन हैं। कुछ सुविधाएँ सीमित हो सकती हैं।",
+        hindi: "आप ऑफलाइन हैं। कुछ सुविधाएँ सीমित हो सकती हैं।",
         tamil: "நீங்கள் ஆஃப்லைனில் உள்ளீர்கள். சில அம்சங்கள் வரம்புக்குட்பட்டவை.",
         telugu: "మీరు ఆఫ్‌లైన్‌లో ఉన్నారు. కొన్ని ఫీచర్లు పరిమితం కావచ్చు.",
         bengali: "আপনি অফলাইন আছেন। কিছু বৈশিষ্ট্য সীমিত হতে পারে।"
@@ -175,7 +174,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       },
       error_message: {
         english: "An error occurred. Please try again.",
-        hindi: "एक त्रुटि हुई। कृपया पुन: प्रयास करें।",
+        hindi: "एक त्रुटि हुई। कृपया पुन: प्रयास ���रें।",
         tamil: "பிழை ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
         telugu: "లోపం సంభవించింది. దయచేసి మళ్ళీ ప్రయత్నించండి.",
         bengali: "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।"

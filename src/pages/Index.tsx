@@ -1,5 +1,14 @@
 import React from 'react';
-import { Camera, Settings, Info } from 'lucide-react';
+import { 
+  Camera, 
+  Settings, 
+  Info, 
+  Globe, 
+  Languages, 
+  Volume2, 
+  Vibrate,
+  Eye
+} from 'lucide-react';
 import { AppProvider, useAppContext } from '@/context/AppContext';
 import Header from '@/components/Header';
 import CameraView from '@/components/CameraView';
@@ -7,9 +16,17 @@ import LoadingIndicator from '@/components/LoadingIndicator';
 import ResultDisplay from '@/components/ResultDisplay';
 import ErrorDisplay from '@/components/ErrorDisplay';
 import SettingsPanel from '@/components/SettingsPanel';
+import AccessibilitySettings from '@/components/AccessibilitySettings';
 
 const HomeContent: React.FC = () => {
-  const { language, status, mode, startCamera, goToHome } = useAppContext();
+  const { 
+    language, 
+    status, 
+    mode, 
+    startCamera, 
+    goToHome,
+    setStatus
+  } = useAppContext();
   
   const translations = {
     welcomeTitle: {
@@ -46,11 +63,47 @@ const HomeContent: React.FC = () => {
       tamil: "பற்றி",
       telugu: "గురించి",
       bengali: "সম্পর্কে"
+    },
+    accessibility: {
+      english: "Accessibility",
+      hindi: "पहुंच",
+      tamil: "அணுகல்",
+      telugu: "అందుబాటు",
+      bengali: "অ্যাক্সেসযোগ্যতা"
+    },
+    offline: {
+      english: "Offline Mode",
+      hindi: "ऑफलाइन मोड",
+      tamil: "ஆஃப்லைன் பயன்முறை",
+      telugu: "ఆఫ్‌లైన్ మోడ్",
+      bengali: "অফলাইন মোড"
+    },
+    voice: {
+      english: "Voice Feedback",
+      hindi: "आवाज प्रतिक्रिया",
+      tamil: "குரல் கருத்து",
+      telugu: "వాయిస్ ఫీడ్‌బ్యాక్",
+      bengali: "ভয়েস ফিডব্যাক"
+    },
+    vibration: {
+      english: "Vibration",
+      hindi: "कंपन",
+      tamil: "அதிர்வு",
+      telugu: "కంపనం",
+      bengali: "কম্পন"
     }
   };
   
   const getText = (key: keyof typeof translations) => {
     return translations[key][language as keyof typeof translations[keyof typeof translations]] || translations[key].english;
+  };
+  
+  const handleOpenSettings = () => {
+    setStatus('settings');
+  };
+  
+  const handleOpenAccessibility = () => {
+    setStatus('accessibility');
   };
   
   if (mode === 'wearable' && status === 'idle') {
@@ -81,11 +134,19 @@ const HomeContent: React.FC = () => {
         
         <div className="mt-8 flex gap-4">
           <button
-            onClick={() => {/* Toggle settings */}}
+            onClick={handleOpenSettings}
             className="p-4 rounded-full bg-black/40 border border-white/20 text-white hover:bg-white/10 transition-colors duration-200 focus-visible-ring"
             aria-label={getText('settings')}
           >
             <Settings className="h-6 w-6" />
+          </button>
+          
+          <button
+            onClick={handleOpenAccessibility}
+            className="p-4 rounded-full bg-black/40 border border-white/20 text-white hover:bg-white/10 transition-colors duration-200 focus-visible-ring"
+            aria-label={getText('accessibility')}
+          >
+            <Eye className="h-6 w-6" />
           </button>
           
           <button
@@ -96,6 +157,28 @@ const HomeContent: React.FC = () => {
             <Info className="h-6 w-6" />
           </button>
         </div>
+      </div>
+    );
+  }
+  
+  if (status === 'settings') {
+    return (
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+        <Header />
+        <main className="flex-1 flex flex-col items-center justify-center">
+          <SettingsPanel />
+        </main>
+      </div>
+    );
+  }
+  
+  if (status === 'accessibility') {
+    return (
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+        <Header />
+        <main className="flex-1 flex flex-col items-center justify-center">
+          <AccessibilitySettings />
+        </main>
       </div>
     );
   }
@@ -168,14 +251,32 @@ const HomeContent: React.FC = () => {
               {getText('scanCurrency')}
             </button>
             
-            <button
-              onClick={() => {/* Toggle settings view */}}
-              className="secondary-button flex items-center justify-center gap-2"
-              aria-label={getText('settings')}
-            >
-              <Settings className="h-6 w-6" />
-              {getText('settings')}
-            </button>
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                onClick={handleOpenSettings}
+                className="secondary-button flex items-center justify-center gap-2"
+                aria-label={getText('settings')}
+              >
+                <Settings className="h-6 w-6" />
+                {getText('settings')}
+              </button>
+              
+              <button
+                onClick={handleOpenAccessibility}
+                className="secondary-button flex items-center justify-center gap-2"
+                aria-label={getText('accessibility')}
+              >
+                <Eye className="h-6 w-6" />
+                {getText('accessibility')}
+              </button>
+            </div>
+            
+            <div className="flex justify-center mt-4">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Globe className="h-4 w-4" />
+                <span className="text-sm">{getText('offline')}</span>
+              </div>
+            </div>
           </div>
         </div>
       </main>
