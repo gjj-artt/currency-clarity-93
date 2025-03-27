@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Languages, Check } from 'lucide-react';
+import { Languages, Check, Globe } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
 
 const LanguageSelector: React.FC = () => {
@@ -23,13 +23,19 @@ const LanguageSelector: React.FC = () => {
   return (
     <div className="relative">
       <button
-        className="icon-button"
+        className="icon-button relative"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Select language"
+        aria-label="Translate website"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        <Languages className="h-6 w-6" />
+        <Globe className="h-6 w-6" />
+        <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center">
+          {language === 'english' ? 'EN' : 
+           language === 'hindi' ? 'HI' : 
+           language === 'tamil' ? 'TA' : 
+           language === 'telugu' ? 'TE' : 'BN'}
+        </span>
       </button>
       
       {isOpen && (

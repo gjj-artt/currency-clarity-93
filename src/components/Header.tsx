@@ -26,6 +26,8 @@ const Header: React.FC = () => {
       </div>
       
       <div className="flex items-center gap-2 md:gap-4">
+        <LanguageSelector />
+        
         <button
           className="icon-button"
           onClick={toggleDarkMode}
@@ -37,8 +39,6 @@ const Header: React.FC = () => {
             <Moon className="h-5 w-5" />
           )}
         </button>
-        
-        <LanguageSelector />
         
         <ModeToggle />
       </div>
