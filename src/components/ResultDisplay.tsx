@@ -64,12 +64,14 @@ const ResultDisplay: React.FC = () => {
   };
   
   // Mock result for demonstration purposes
-  const displayResult = "₹500";
+  const displayResult = result || "₹500";
   
   useEffect(() => {
     // In a real app, result would come from the backend AI analysis
     // For demo, we'll announce the mock result
-    announceResult(displayResult);
+    if (result) {
+      announceResult(displayResult);
+    }
     
     // Clean up
     return () => {

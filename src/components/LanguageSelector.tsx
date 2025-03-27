@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Languages, Check, Globe } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
 
 const LanguageSelector: React.FC = () => {
   const { language, setLanguage } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   
   const languages = [
     { id: 'english', name: 'English', nativeName: 'English' },
@@ -15,13 +16,27 @@ const LanguageSelector: React.FC = () => {
     { id: 'bengali', name: 'Bengali', nativeName: 'বাংলা' }
   ];
   
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
   const handleLanguageChange = (langId: string) => {
     setLanguage(langId as any);
     setIsOpen(false);
   };
   
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         className="icon-button relative"
         onClick={() => setIsOpen(!isOpen)}
@@ -40,7 +55,7 @@ const LanguageSelector: React.FC = () => {
       
       {isOpen && (
         <div 
-          className="absolute right-0 top-full mt-2 w-48 rounded-lg shadow-lg glass-card overflow-hidden z-10 animate-scale-in origin-top-right"
+          className="absolute right-0 top-full mt-2 w-48 rounded-lg shadow-lg bg-background border border-border overflow-hidden z-50"
           role="listbox"
           aria-label="Available languages"
         >
