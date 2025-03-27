@@ -43,3 +43,33 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Decorative Background Styles */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Currency symbol animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Add gradient accents to elements */
+.accent-gradient {
+  background: linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
+}
+
+/* Give the website a subtle motion effect */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Add a subtle glow effect to important elements */
+.glow-effect {
+  box-shadow: 0 0 15px rgba(77, 143, 225, 0.5);
+}

@@ -1,23 +1,27 @@
 
 import React from 'react';
-import { Moon, Sun, Settings, Languages } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useAppContext } from '@/context/AppContext';
-import { Button } from '@/components/ui/button';
 import ModeToggle from './ModeToggle';
 import LanguageSelector from './LanguageSelector';
 
 const Header: React.FC = () => {
-  const { isDarkMode, toggleDarkMode, status, goToHome } = useAppContext();
+  const { isDarkMode, toggleDarkMode, goToHome } = useAppContext();
   
   return (
     <header className="glass-card p-4 md:p-6 flex justify-between items-center animate-slide-down">
-      <div>
+      <div className="flex items-center gap-2">
         <button 
           onClick={goToHome}
-          className="focus-visible-ring text-xl md:text-2xl font-bold"
+          className="focus-visible-ring flex items-center gap-2"
           aria-label="Go to home"
         >
-          CurrencySence
+          <img 
+            src="/lovable-uploads/3221996f-11c6-43b9-84a3-21e5509b07a8.png" 
+            alt="CurrencySence Logo" 
+            className="h-10 md:h-12 w-auto"
+          />
+          <span className="text-xl md:text-2xl font-bold hidden md:inline">CurrencySence</span>
         </button>
       </div>
       
