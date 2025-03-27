@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Camera, 
@@ -17,6 +18,7 @@ import ResultDisplay from '@/components/ResultDisplay';
 import ErrorDisplay from '@/components/ErrorDisplay';
 import SettingsPanel from '@/components/SettingsPanel';
 import AccessibilitySettings from '@/components/AccessibilitySettings';
+import BackgroundText from '@/components/BackgroundText';
 
 const HomeContent: React.FC = () => {
   const { 
@@ -108,7 +110,9 @@ const HomeContent: React.FC = () => {
   
   if (mode === 'wearable' && status === 'idle') {
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 animate-fade-in">
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 animate-fade-in relative">
+        <BackgroundText />
+        
         <div 
           className="glass-card bg-black/40 border-white/20 p-6 rounded-full mb-4 animate-pulse-subtle cursor-pointer hover:bg-black/50 transition-colors"
           onClick={() => {
@@ -163,7 +167,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'settings') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <SettingsPanel />
@@ -174,7 +179,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'accessibility') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <AccessibilitySettings />
@@ -185,7 +191,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'camera') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <CameraView />
@@ -196,7 +203,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'processing') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <LoadingIndicator />
@@ -207,7 +215,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'result') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <ResultDisplay />
@@ -218,7 +227,8 @@ const HomeContent: React.FC = () => {
   
   if (status === 'error') {
     return (
-      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+      <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+        <BackgroundText />
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center">
           <ErrorDisplay />
@@ -228,10 +238,11 @@ const HomeContent: React.FC = () => {
   }
   
   return (
-    <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4">
+    <div className="min-h-screen flex flex-col p-4 md:p-6 gap-4 relative">
+      <BackgroundText />
       <Header />
       
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
+      <main className="flex-1 flex flex-col items-center justify-center py-8 z-10">
         <div className="glass-card p-8 max-w-md w-full rounded-lg animate-fade-in">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
             {getText('welcomeTitle')}
