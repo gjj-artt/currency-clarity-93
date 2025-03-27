@@ -9,19 +9,19 @@ const Header: React.FC = () => {
   const { isDarkMode, toggleDarkMode, goToHome } = useAppContext();
   
   return (
-    <header className="glass-card p-4 md:p-6 flex justify-between items-center animate-slide-down">
+    <header className="glass-card p-3 md:p-4 flex justify-between items-center animate-slide-down">
       <div className="flex items-center gap-2">
         <button 
           onClick={goToHome}
-          className="focus-visible-ring flex items-center gap-2"
+          className="focus-visible-ring flex items-center gap-1"
           aria-label="Go to home"
         >
           <img 
             src="/lovable-uploads/3221996f-11c6-43b9-84a3-21e5509b07a8.png" 
             alt="CurrencySence Logo" 
-            className="h-15 md:h-18 w-auto" // Increased by 1.5x
+            className="h-10 w-auto" // Reduced size
           />
-          <span className="text-2xl md:text-3xl font-bold hidden md:inline">CurrencySence</span>
+          <span className="text-lg md:text-xl font-bold hidden md:inline">CurrencySence</span>
         </button>
       </div>
       
@@ -32,9 +32,9 @@ const Header: React.FC = () => {
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
-            <Sun className="h-6 w-6" />
+            <Sun className="h-5 w-5" />
           ) : (
-            <Moon className="h-6 w-6" />
+            <Moon className="h-5 w-5" />
           )}
         </button>
         
