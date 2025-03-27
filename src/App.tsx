@@ -13,9 +13,10 @@ const queryClient = new QueryClient();
 
 const WelcomeAudio = () => {
   useEffect(() => {
-    // Short delay to ensure page has loaded
+    // Short delay to ensure page has loaded and voices are available
     const timer = setTimeout(() => {
-      speak("Welcome to Currency Sense");
+      // Using Indian voice (true as the last parameter)
+      speak("Welcome to Currency Sense", 0.9, 1.2, 1, true);
     }, 1000);
     
     return () => clearTimeout(timer);

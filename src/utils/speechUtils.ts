@@ -1,4 +1,3 @@
-
 /**
  * Utility functions for speech synthesis
  */
@@ -10,7 +9,28 @@ if (typeof window !== 'undefined') {
   speechSynthesis = window.speechSynthesis;
 }
 
-export const speak = (text: string, rate = 1, pitch = 1, volume = 1): void => {
+// Get all available voices
+const getAvailableVoices = (): SpeechSynthesisVoice[] => {
+  if (!speechSynthesis) return [];
+  return speechSynthesis.getVoices();
+};
+
+// Find an Indian voice if available
+const findIndianVoice = (): SpeechSynthesisVoice | null => {
+  const voices = getAvailableVoices();
+  
+  // Look for Hindi or Indian English voices
+  const indianVoice = voices.find(voice => 
+    voice.lang.includes('hi-') || // Hindi
+    voice.lang.includes('en-IN') || // Indian English
+    voice.name.toLowerCase().includes('indian') ||
+    voice.name.toLowerCase().includes('hindi')
+  );
+  
+  return indianVoice || null;
+};
+
+export const speak = (text: string, rate = 1, pitch = 1, volume = 1, useIndianVoice = true): void => {
   if (!speechSynthesis) {
     console.error('Speech synthesis not supported');
     return;
@@ -26,6 +46,18 @@ export const speak = (text: string, rate = 1, pitch = 1, volume = 1): void => {
   speechUtterance.rate = rate;
   speechUtterance.pitch = pitch;
   speechUtterance.volume = volume;
+  
+  // Try to set Indian voice if requested
+  if (useIndianVoice) {
+    const indianVoice = findIndianVoice();
+    if (indianVoice) {
+      speechUtterance.voice = indianVoice;
+    } else {
+      // If no Indian voice is found, try to adjust parameters to simulate one
+      speechUtterance.pitch = 1.2; // Slightly higher pitch
+      speechUtterance.rate = 0.9; // Slightly slower rate
+    }
+  }
   
   // Speak
   speechSynthesis.speak(speechUtterance);
