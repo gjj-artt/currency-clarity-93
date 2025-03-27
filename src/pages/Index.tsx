@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Camera, 
@@ -19,6 +18,7 @@ import ErrorDisplay from '@/components/ErrorDisplay';
 import SettingsPanel from '@/components/SettingsPanel';
 import AccessibilitySettings from '@/components/AccessibilitySettings';
 import BackgroundText from '@/components/BackgroundText';
+import ChatbotAccountant from '@/components/ChatbotAccountant';
 
 const HomeContent: React.FC = () => {
   const { 
@@ -161,6 +161,8 @@ const HomeContent: React.FC = () => {
             <Info className="h-6 w-6" />
           </button>
         </div>
+        
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -173,6 +175,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <SettingsPanel />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -185,6 +188,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <AccessibilitySettings />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -197,6 +201,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <CameraView />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -209,6 +214,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <LoadingIndicator />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -221,6 +227,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <ResultDisplay />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -233,6 +240,7 @@ const HomeContent: React.FC = () => {
         <main className="flex-1 flex flex-col items-center justify-center">
           <ErrorDisplay />
         </main>
+        <ChatbotAccountant />
       </div>
     );
   }
@@ -291,6 +299,8 @@ const HomeContent: React.FC = () => {
           </div>
         </div>
       </main>
+      
+      <ChatbotAccountant />
     </div>
   );
 };

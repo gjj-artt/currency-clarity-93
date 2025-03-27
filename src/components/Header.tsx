@@ -19,9 +19,9 @@ const Header: React.FC = () => {
           <img 
             src="/lovable-uploads/3221996f-11c6-43b9-84a3-21e5509b07a8.png" 
             alt="CurrencySence Logo" 
-            className="h-10 md:h-12 w-auto"
+            className="h-15 md:h-18 w-auto" // Increased by 1.5x
           />
-          <span className="text-xl md:text-2xl font-bold hidden md:inline">CurrencySence</span>
+          <span className="text-2xl md:text-3xl font-bold hidden md:inline">CurrencySence</span>
         </button>
       </div>
       

@@ -59,6 +59,15 @@
   100% { transform: translateY(0px); }
 }
 
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 3s ease-in-out infinite;
+}
+
 /* Add gradient accents to elements */
 .accent-gradient {
   background: linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%);
@@ -72,4 +81,15 @@
 /* Add a subtle glow effect to important elements */
 .glow-effect {
   box-shadow: 0 0 15px rgba(77, 143, 225, 0.5);
+}
+
+/* Chatbot animation */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(77, 143, 225, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(77, 143, 225, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(77, 143, 225, 0); }
+}
+
+.chatbot-pulse {
+  animation: pulse-ring 2s infinite;
 }
